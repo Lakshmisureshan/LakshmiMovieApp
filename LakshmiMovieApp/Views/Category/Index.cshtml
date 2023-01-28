@@ -39,6 +39,12 @@ Category
                 Display Order
 
             </th>
+
+
+                <th>
+                    Display Order
+
+                </th>
         </tr>
 
     </thead>
@@ -57,6 +63,18 @@ Category
 
 
                    @obj.DisplayOrder
+               </td>
+
+               <td>
+
+<div class="w-75  btngroup"  role="group">
+
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"  class="btn btn-primary mx-2"> Edit <i class="bi bi-pencil"></i>   </a>
+                              
+               
+</div>
+
+
                </td>
            
            </tr>
