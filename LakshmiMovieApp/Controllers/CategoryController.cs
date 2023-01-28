@@ -30,6 +30,11 @@ namespace LakshmiMovieApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
+
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Display Order cannot be exactly same");
+            }
             if (ModelState.IsValid)
             { 
             _db.Categories.Add(obj);
