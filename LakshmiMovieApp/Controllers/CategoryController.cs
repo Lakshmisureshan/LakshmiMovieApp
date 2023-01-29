@@ -40,6 +40,7 @@ namespace LakshmiMovieApp.Controllers
             { 
             _db.Categories.Add(obj);
             _db.SaveChanges();
+            TempData["success"] = "Catgegory created successfully";
              return RedirectToAction("Index");
         }
             return View(obj);
@@ -81,6 +82,7 @@ namespace LakshmiMovieApp.Controllers
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Catgegory Updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -92,6 +94,43 @@ namespace LakshmiMovieApp.Controllers
 
 
 
+        public IActionResult Delete(int? id)
+        {
+
+            if (id == null || id == 0)
+            {
+
+                return NotFound();
+            }
+            var categoryFromDb = _db.Categories.Find(id);
+            if (categoryFromDb == null)
+            {
+
+                return NotFound();
+
+            }
+            return View(categoryFromDb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(int? id )
+        {
+
+            var obj = _db.Categories.Find(id);
+            if (obj == null)
+            {
+
+                return NotFound();
+
+            }
+               _db.Categories.Remove(obj);
+                _db.SaveChanges();
+            TempData["success"] = "Catgegory Deleted successfully";
+            return RedirectToAction("Index");
+          
+          
+        }
 
 
 
