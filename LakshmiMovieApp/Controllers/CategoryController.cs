@@ -1,6 +1,7 @@
 ﻿using LakshmiMovieApp.Data;
 using LakshmiMovieApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
 namespace LakshmiMovieApp.Controllers
@@ -45,6 +46,35 @@ namespace LakshmiMovieApp.Controllers
         }
             return View(obj);
         }
+
+
+
+
+
+
+
+
+        public IActionResult GetCategorybyid (int? id)
+        {
+
+            var details = _db.Categories.FromSqlRaw<Category>("SP_GetCategorybyid {0}", id).ToList().FirstOrDefault();
+            if (details == null) return View("Empty");
+
+            return View(details);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
